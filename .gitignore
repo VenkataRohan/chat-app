@@ -1,0 +1,19 @@
+expo-client/node_modules/
+expo-client/.expo/
+expo-client/dist/
+expo-client/npm-debug.*
+expo-client/*.jks
+expo-client/*.p8
+expo-client/*.p12
+expo-client/*.key
+expo-client/*.mobileprovision
+expo-client/*.orig.*
+expo-client/web-build/
+
+# macOS
+expo-client/.DS_Store
+
+express-server/node_modules/
+
+
+
