@@ -87,8 +87,10 @@ io.on("connection", (socket) => {
   
 
     console.log("a user connected : "+socket.id);
-    socket.on("chat", (ms,to,from,img) => {
+    socket.on("chat", (ms,to,from,img,loc,doc) => {
        console.log(to+" "+from+" "+img);
+       console.log("asdasdasdasdsasa");
+       console.log(loc);
     //     const me=new Msg(
     //       {
     //       msg:`${ms}`,
@@ -121,7 +123,7 @@ io.on("connection", (socket) => {
     console.log(usersOnline.get(to));
         console.log(usersOnline.get(from));
         console.log(usersOnline);
-         io.to(usersOnline.get(to)).to(usersOnline.get(from)).emit("aa",ms,from,img);
+         io.to(usersOnline.get(to)).to(usersOnline.get(from)).emit("aa",ms,from,img,loc,doc);
     });
 
 
@@ -166,6 +168,12 @@ for(let i=0;i<members.length;i++)
       socket.to(t).emit('addG',id,name)
     })
 
+
+
+    socket.on('join-room', (roomId, userId) => {
+      socket.join(roomId)
+      socket.to(roomId).broadcast.emit('call-user-connected', userId)
+    })
     socket.on('disconnect', function(response) {
       console.log('Got disconnect!  '+n+" "+response);
       if(response!='ping timeout')
